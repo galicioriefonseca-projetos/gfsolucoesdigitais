@@ -41,7 +41,7 @@ export function DiagnosticForm() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
-    const parsed = schema.safeParse({ ...data, perfil: data.perfil ?? "", consentimento: data.consentimento ?? "" });
+    const parsed = schema.safeParse({ ...data, perfil: data["perfil"] ?? "", consentimento: data["consentimento"] ?? "" });
     if (!parsed.success) {
       const errs: Record<string, string> = {};
       parsed.error.issues.forEach((i) => { const k = String(i.path[0]); if (!errs[k]) errs[k] = i.message; });
